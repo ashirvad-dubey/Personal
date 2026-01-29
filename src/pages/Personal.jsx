@@ -1,11 +1,24 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+
 import './Home.css';
 
 export default function Personal(){
-
-  
+const navigate=useNavigate();
+ const[password,SetPassword]=useState('');
+ const handlepassword=(e)=>{SetPassword(e.target.value);}
+ const Login = () => {
+  if (password === "5678") {
+    localStorage.setItem("isLogin", "true"); 
+    alert("Admin Login Successfully");
+    navigate("/photos");
+  } else {
+    alert("Login failed");
+  }
+ }
     return(
         <>
         
@@ -16,9 +29,9 @@ export default function Personal(){
         <Card.Title>Personal Login </Card.Title>
         <Card.Text>
     <Form>
-    <Form.Control type="password" onChange={handlepassword} placeholder="Password" />
+    <Form.Control type="password" onChange={handlepassword}  placeholder="Password" />
     </Form></Card.Text>
-        <Button className='login'  variant="primary">Login</Button>
+        <Button className='login'onClick={Login}  variant="primary">Login</Button>
       </Card.Body>
     </Card>
           </div></div>        
