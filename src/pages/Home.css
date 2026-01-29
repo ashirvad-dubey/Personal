@@ -1,0 +1,47 @@
+.inner-box{
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(243, 108, 108);
+    display: flex;
+    overflow: hidden;
+}
+.login-pass{
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+}
+.card{
+border-radius: 25px;
+}
+.card-body{
+    width: 30rem;
+    height: 50vh;
+    background-color: red;
+    border-radius: 25px;
+}
+.card-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: white;
+}
+.login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.card-text{
+    /*margin-top: 20%;*/
+    padding: 80px;
+    width: 100%;
+
+}
+.form-control {
+padding: .8rem .75rem;
+
+}
