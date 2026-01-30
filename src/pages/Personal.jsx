@@ -25,8 +25,7 @@ const navigate=useNavigate();
  }
     return(
         <>
-        <Navbar expand="lg" className="bg-body-tertiary"><Container fluid><Navbar.Brand onClick={handlelogout} ><Button className='logout' variant="warning">Logout</Button>
-</Navbar.Brand></Container></Navbar>
+        
  <div className="inner-box">
             <div className="login-pass">
          <Card>

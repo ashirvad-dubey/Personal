@@ -1,71 +1,95 @@
-.inner-box{
-    width: 100%;
-    height: 100vh;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/*Home Css*/
+.home{
+    min-height: 100vh;
     background-color: rgb(243, 108, 108);
-    overflow: hidden;
 }
-.login-pass{
-    width: 100%;
-    height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 25px;
+.gallery{
+    padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
 }
-.card{
-border-radius: 25px;
+/*Navbar Css*/
+.bg-body-tertiary {
+    background-color: indianred !important;
+    border: 2px solid sandybrown;
 }
-.card-body{
-    width: 30rem;
-    height: 50vh;
-    border-radius: 25px;
-    background-color: lightcoral;
-    border-radius: 25px;
-    border: 1px solid white;
+/*Photo card CSss*/
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
-.card-title{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    color: white;
+
+.card:hover {
+  transform: scale(1.05);
 }
-.login{
-    width: 50%;
-    margin-left: 26%;
-    border: 2px solid #ffc107;
-    color: red;
-    font-size: 1.3rem;
-    background-color: antiquewhite;
-    font-family: emoji;
-    border-radius: 20px;
-    padding: .6rem;
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+/*Login/Peronal/Admin*/ 
+
+.inner-box {
+  min-height: calc(100vh - 56px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    background-color: rgb(243, 108, 108);
+}
+
+.login-pass {
+  width: 100%;
+  max-width: 380px;
+  padding: 15px;
+}
+
+/*Login Card*/
+.login-pass .card {
+  padding: 10px;
+}
+
+.card-title {
+  text-align: center;
+  font-weight: 600;
+}
+
+/* ===== FORM ===== */
+.form-control {
+  margin-top: 10px;
+  height: 45px;
+}
+
+/* ===== BUTTONS ===== */
+.login {
+  width: 100%;
+  margin-top: 15px;
+}
+
+.logout {
+  font-size: 14px;
+  padding: 5px 12px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .card img {
+    height: 160px;
+  }
 }
 .logout{
-width: 274%;
     color: black;
     font-family: cursive;
     font-size: 1.1rem;
     border-radius: 20px;
-}
-.card-text{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10%;
-
-}
-
-.form-control {
-    padding: 1rem .75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    border-radius: 17px;
-    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-    border: 1px solid red;
-}
-.bg-body-tertiary {
-    background-color: indianred !important;
-    border: 2px solid sandybrown;
 }

@@ -2,12 +2,9 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
 import './Home.css';
 import { useState } from 'react';
 export default function Admin(){
-const handlelogout=()=>{ localStorage.clear();navigate('/');}
 const navigate=useNavigate();
  const[password,SetPassword]=useState('');
  const handlepassword=(e)=>{SetPassword(e.target.value);}
@@ -21,12 +18,11 @@ const navigate=useNavigate();
   }
  }
     return(
+      
         <>
        
         <div className="inner-box">
-           <Navbar expand="lg" className="bg-body-tertiary"><Container fluid><Navbar.Brand ><Button onClick={handlelogout} className='logout' variant="warning">Logout</Button>
-</Navbar.Brand></Container></Navbar>
-
+           
             <div className="login-pass">
          <Card>
       <Card.Body>
