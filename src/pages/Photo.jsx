@@ -8,9 +8,7 @@ export default function Photo(){
 
     return(
         <>
-            
-
-        <h1>Photo .....!</h1>
+        <h1>Photo .......!</h1>
         
         </>
     )

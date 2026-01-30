@@ -8,7 +8,6 @@ export default function Home() {
   const totalPhotos = 30;
   const cards = [];
 
-  // FOR LOOP (auto repeat cards)
   for (let i = 1; i <= totalPhotos; i++) {
     cards.push(
       <div className="card" key={i}>
@@ -20,7 +19,6 @@ export default function Home() {
   return (
     <>
       <div className="home">
-        {/* Navbar */}
         <Navbar expand="lg" className="bg-body-tertiary">
           <Container fluid>
             <Navbar.Brand

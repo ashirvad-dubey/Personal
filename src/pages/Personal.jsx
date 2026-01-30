@@ -25,7 +25,6 @@ const navigate=useNavigate();
  }
     return(
         <>
-        
  <div className="inner-box">
             <div className="login-pass">
          <Card>
