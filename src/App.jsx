@@ -17,7 +17,18 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/admin" element={<Admin />} />
 
-        {/* Protected */}
+        {/* Protected */ }
+
+ <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <Personal />
+            </ProtectedRoute>
+          }
+        />
+
+
         <Route
           path="/personal"
           element={
@@ -39,3 +50,12 @@ export default function App() {
     </Router>
   );
 }
+
+{/*}export default function App(){
+  return(
+    <>
+    <Admin/>
+    
+    </>
+  )
+}{*/}

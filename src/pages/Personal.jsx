@@ -3,11 +3,15 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
+
 
 import './Home.css';
 
 export default function Personal(){
 const navigate=useNavigate();
+        const handlelogout=()=>{ localStorage.clear();navigate('/');}
  const[password,SetPassword]=useState('');
  const handlepassword=(e)=>{SetPassword(e.target.value);}
  const Login = () => {
@@ -21,12 +25,14 @@ const navigate=useNavigate();
  }
     return(
         <>
-        
+        <Navbar expand="lg" className="bg-body-tertiary"><Container fluid><Navbar.Brand onClick={handlelogout} ><Button className='logout' variant="warning">Logout</Button>
+</Navbar.Brand></Container></Navbar>
  <div className="inner-box">
             <div className="login-pass">
          <Card>
       <Card.Body>
         <Card.Title>Personal Login </Card.Title>
+        <hr />
         <Card.Text>
     <Form>
     <Form.Control type="password" onChange={handlepassword}  placeholder="Password" />

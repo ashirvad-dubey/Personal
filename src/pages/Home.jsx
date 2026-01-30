@@ -8,7 +8,11 @@ export default function Home(){
 
     return(
         <>
-    <Navbar expand="lg" className="bg-body-tertiary"><Container fluid><Navbar.Brand onClick={()=>navigate('/admin')} >Dashboard</Navbar.Brand></Container></Navbar>  
+    <Navbar expand="lg" className="bg-body-tertiary"><Container fluid><Navbar.Brand onClick={()=>navigate('/admin')} >Dashboard</Navbar.Brand></Container></Navbar>
+
+
+    
+      
             </>
     )
 }
