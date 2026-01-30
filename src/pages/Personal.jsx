@@ -8,6 +8,7 @@ import Navbar from 'react-bootstrap/Navbar';
 
 
 import './Home.css';
+import Navbr from './Navbr';
 
 export default function Personal(){
 const navigate=useNavigate();
@@ -25,6 +26,8 @@ const navigate=useNavigate();
  }
     return(
         <>
+                <Navbr/>
+        
  <div className="inner-box">
             <div className="login-pass">
          <Card>

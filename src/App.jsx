@@ -11,25 +11,20 @@ function ProtectedRoute({ children }) {
 }
 
 export default function App() {
+
   return (
+    <>
+
     <Router>
-      <Navbr/>
-      <Routes>
+
+         <Routes>
         {/* Public */}
         <Route path="/" element={<Home />} />
         <Route path="/admin" element={<Admin />} />
 
         {/* Protected */ }
 
- <Route
-          path="/admin"
-          element={
-            <ProtectedRoute>
-              <Personal />
-            </ProtectedRoute>
-          }
-        />
-
+ 
 
         <Route
           path="/personal"
@@ -50,14 +45,7 @@ export default function App() {
         />
       </Routes>
     </Router>
+    </>
   );
 }
 
-{/*}export default function App(){
-  return(
-    <>
-    <Admin/>
-    
-    </>
-  )
-}{*/}

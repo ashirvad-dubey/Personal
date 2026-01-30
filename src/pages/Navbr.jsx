@@ -5,9 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import './Home.css';
 
 export default function Navbr(){
-    if(location.pathname==='/'){
-    return null;
-  }
+   
     const navigate=useNavigate();
     const handlelogout=()=>{ localStorage.clear();navigate('/');}
 

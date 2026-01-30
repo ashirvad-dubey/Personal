@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import './Home.css';
 import { useState } from 'react';
+import Navbr from './Navbr';
 export default function Admin(){
 const navigate=useNavigate();
  const[password,SetPassword]=useState('');
@@ -20,6 +21,7 @@ const navigate=useNavigate();
     return(
 
         <>
+        <Navbr/>
        
         <div className="inner-box">
             <div className="login-pass">
