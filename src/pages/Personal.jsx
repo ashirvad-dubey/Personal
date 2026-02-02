@@ -5,25 +5,34 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase";
 
 
 import './Home.css';
 import Navbr from './Navbr';
+
 
 export default function Personal(){
 const navigate=useNavigate();
         const handlelogout=()=>{ localStorage.clear();navigate('/');}
  const[password,SetPassword]=useState('');
  const handlepassword=(e)=>{SetPassword(e.target.value);}
- const Login = () => {
-  if (password === "5678") {
-    localStorage.setItem("isLogin", "true"); 
-    alert("Admin Login Successfully");
-    navigate("/photos");
-  } else {
-    alert("Login failed");
-  }
- }
+  
+
+
+
+
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        navigate("/admin"); // login page
+      }
+    });
+
+    return () => unsub();
+  }, []);
+
     return(
         <>
                 <Navbr/>
