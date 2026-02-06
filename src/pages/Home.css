@@ -91,3 +91,13 @@
     font-size: 1.1rem;
     border-radius: 20px;
 }
+.header{
+background-color: rgb(243, 108, 108);
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2.2rem;
+    font-family: initial;
+}

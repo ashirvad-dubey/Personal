@@ -1,5 +1,3 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
@@ -10,25 +8,13 @@ import Navbr from './Navbr';
 export default function Admin(){
 const navigate=useNavigate();
  const[password,SetPassword]=useState('');
- const FIXED_EMAIL = "admin@gmail.com";
- console.log("AUTH OBJECT:", auth);
-
-  const handleLogin = async (e) => {
-      e.preventDefault();
-
-    try {
-      await signInWithEmailAndPassword(auth, FIXED_EMAIL, password);
-        navigate("/personal");
-    } catch (err) {
-      alert("Wrong password");
-    }
-  };
-
+ 
     return(
 
         <>
         <Navbr/>
-       
+       <div className="header">Admin Login Page</div>
+
         <div className="inner-box">
           
             <div className="login-pass">
@@ -44,7 +30,7 @@ const navigate=useNavigate();
     </Form>
 
           </Card.Text>
-                    <Button  type="button"  className='login'onClick={handleLogin}  variant="primary">Login</Button>
+                    <Button  type="button"  className='login'  variant="primary">Login</Button>
 
       </Card.Body>
     </Card>

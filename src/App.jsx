@@ -3,7 +3,6 @@ import Home from "./pages/Home";
 import Personal from "./pages/Personal";
 import Photo from "./pages/Photo";
 import Admin from "./pages/Admin";
-import Navbr from "./pages/Navbr";
 
 function ProtectedRoute({ children }) {
   const isLoggedIn = localStorage.getItem("isLogin");
