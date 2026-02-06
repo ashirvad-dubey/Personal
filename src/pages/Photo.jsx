@@ -10,6 +10,7 @@ export default function Photo(){
     return(
         <>
                 <Navbr/>
+        <div className="header">Welcome Shivani Pandey</div>
         <h1>Photo .......!</h1>
         
         </>

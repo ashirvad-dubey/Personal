@@ -6,22 +6,31 @@ import { useNavigate } from 'react-router-dom';
 
 import './Home.css';
 import Navbr from './Navbr';
+import { useState } from 'react';
 
 
 export default function Personal(){
 const navigate=useNavigate();
-        const handlelogout=()=>{ localStorage.clear();navigate('/');}
- const[password,SetPassword]=useState('');
+const[password,SetPassword]=useState('');
  const handlepassword=(e)=>{SetPassword(e.target.value);}
   
+const Login=()=>{
+    if(password ==="1234")
+    {
+        alert("Welcome Shivani JII.....!");
+        navigate("/photos");
 
+    }else{
+        alert("login failed....!")
+    }
 
-
-  
+ }
+   
     return(
         <>
                 <Navbr/>
-        
+               <div className="header">Welcome Personal Page</div>
+
  <div className="inner-box">
             <div className="login-pass">
          <Card>
@@ -32,7 +41,7 @@ const navigate=useNavigate();
     <Form>
     <Form.Control type="password" onChange={handlepassword}  placeholder="Password" />
     </Form></Card.Text>
-        <Button className='login'  variant="primary">Login</Button>
+        <Button className='login' onClick={Login} variant="primary">Login</Button>
       </Card.Body>
     </Card>
           </div></div>        

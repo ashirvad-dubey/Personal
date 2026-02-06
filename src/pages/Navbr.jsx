@@ -8,6 +8,7 @@ export default function Navbr(){
    
     const navigate=useNavigate();
     const handlelogout=()=>{ localStorage.clear();navigate('/');}
+    
 
     return(
         <>
