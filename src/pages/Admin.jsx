@@ -5,26 +5,34 @@ import { useNavigate } from 'react-router-dom';
 import './Home.css';
 import { useState } from 'react';
 import Navbr from './Navbr';
+import axios from 'axios';
 export default function Admin(){
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 const navigate=useNavigate();
  const[password,SetPassword]=useState('');
- const handlepassword=(e)=>{
-    SetPassword(e.target.value);
+ const handlepassword=(e)=>{SetPassword(e.target.value);}
+ const Admin_login=()=>{
+           const dt={password:password}
+           axios.post("https://wzajrdnvabjiwbsvacsj.functions.supabase.co/auth-api/admin/login",dt)
+           .then(res=>{
+                if (res.data.success) {
+            alert("Login Successfully....!✅");
+           localStorage.setItem("isLogin", "true");
+      setIsLoggedIn(true);
+      navigate("/personal");
+     }else{
+      alert(res.data.error || "Login failed");
+                }
+
+           })
+
+
  }
 
- const Login=()=>{
-    if(password ==="1234")
-    {
-        alert("Login sucess Fully....!");
-        localStorage.setItem("isLogin", "true");
-        navigate("/personal");
-
-    }else{
-        alert("login failed....!")
-    }
-
- }
  
+
+
+
     return(
 
         <>
@@ -46,7 +54,7 @@ const navigate=useNavigate();
     </Form>
 
           </Card.Text>
-                    <Button  type="button"  className='login' onClick={Login}  variant="primary">Login</Button>
+                    <Button  type="button"  className='login' onClick={Admin_login}  variant="primary">Login</Button>
 
       </Card.Body>
     </Card>

@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
 
 import './Home.css';
 import Navbr from './Navbr';
@@ -10,23 +10,30 @@ import { useState } from 'react';
 
 
 export default function Personal(){
+const [isLoggedIn, setIsLoggedIn] = useState(false);
 const navigate=useNavigate();
 const[password,SetPassword]=useState('');
  const handlepassword=(e)=>{SetPassword(e.target.value);}
   
-const Login=()=>{
-    if(password ==="1234")
-    {
-        alert("Welcome Shivani JII.....!");
-        navigate("/photos");
+const Personal_Login=()=>{
+    
+    const dt={password:password}
+           axios.post("https://wzajrdnvabjiwbsvacsj.functions.supabase.co/auth-api/personal/login",dt)
+           .then(res=>{
+                if (res.data.success) {
+            alert("Login Successfully....!✅");
+           localStorage.setItem("isLogin", "true");
+      setIsLoggedIn(true);
+      navigate("/photos");
+     }else{
+      alert(res.data.error || "Login failed");
+                }
 
-    }else{
-        alert("login failed....!")
-    }
+           })
 
- }
-   
-    return(
+
+}
+return(
         <>
                 <Navbr/>
                <div className="header">Welcome Personal Page</div>
@@ -41,7 +48,7 @@ const Login=()=>{
     <Form>
     <Form.Control type="password" onChange={handlepassword}  placeholder="Password" />
     </Form></Card.Text>
-        <Button className='login' onClick={Login} variant="primary">Login</Button>
+        <Button className='login' onClick={Personal_Login} variant="primary">Login</Button>
       </Card.Body>
     </Card>
           </div></div>        
