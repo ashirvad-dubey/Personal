@@ -20,11 +20,8 @@ const navigate=useNavigate();
            localStorage.setItem("isLogin", "true");
       setIsLoggedIn(true);
       navigate("/personal");
-     }else{
-      alert(res.data.error || "Login failed");
-                }
-
-           })
+     }else{alert(res.data.error || "Login failed");}
+})
 
 
  }
@@ -37,7 +34,7 @@ const navigate=useNavigate();
 
         <>
         <Navbr/>
-       <div className="header">ADMIN Login Page</div>
+       <div className="header">ADMIN LOGIN PAGE</div>
 
         <div className="inner-box">
           

@@ -20,29 +20,22 @@ const Personal_Login=()=>{
     const dt={password:password}
            axios.post("https://wzajrdnvabjiwbsvacsj.functions.supabase.co/auth-api/personal/login",dt)
            .then(res=>{
-                if (res.data.success) {
-            alert("Login Successfully....!✅");
+            if (res.data.success) {
+            alert("Login Shivani....!✅");
            localStorage.setItem("isLogin", "true");
-      setIsLoggedIn(true);
-      navigate("/photos");
-     }else{
-      alert(res.data.error || "Login failed");
-                }
-
-           })
-
-
-}
+             setIsLoggedIn(true);
+             navigate("/photos");
+                }else{alert(res.data.error || "Login failed");}})}
 return(
         <>
                 <Navbr/>
-               <div className="header">Welcome Personal Page</div>
+               <div className="header">WELCOME LOGIN PERSONAL PAGE</div>
 
  <div className="inner-box">
             <div className="login-pass">
          <Card>
       <Card.Body>
-        <Card.Title>Personal Login </Card.Title>
+        <Card.Title>PERSONAL LOGIN </Card.Title>
         <hr />
         <Card.Text>
     <Form>

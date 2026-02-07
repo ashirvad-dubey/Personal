@@ -106,11 +106,34 @@ background-color: rgb(243, 108, 108);
     font-family: initial;
 }
 
-.uplod-photo{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-   font-size: 14px;
-  padding: 5px 12px;
+.admin-box{
+  display: block;
 
 }
+.admin-passwordlbl{
+ font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+.admin-passwordfrom{
+  border-radius: 25px;
+}
+.admin-btn{
+width: 50%;
+    border-radius: 25px;
+    height: 50px;
+    margin-top: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20%;
+    background-color: darkcyan;
+    border: 1px solid white;
+    color: antiquewhite;
+    font-size: 1.2rem;
+    font-family: fangsong;
+}    .modal-body,.modal-header,.modal-footer {
+    background-color: darkcyan;
+  }
