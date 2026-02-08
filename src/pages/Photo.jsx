@@ -121,10 +121,8 @@ useEffect(() => {
 
     const handlelogout=()=>{ localStorage.clear();navigate('/');}
 
-
     return(
         <>
-
            <Navbar variant="dark">
       <Container fluid className="d-flex align-items-center">
 
@@ -137,7 +135,7 @@ useEffect(() => {
 
         {/* CENTER */}
         <div className="mx-auto">
-          <Button variant="success" onClick={() => setModalShowFile(true)} >
+          <Button  variant="success" onClick={() => setModalShowFile(true)} >
             Upload Photo
           </Button>
         </div>
@@ -148,28 +146,24 @@ useEffect(() => {
             Password
           </Button>
         </div>
-
       </Container>
     </Navbar>
         <div className="header">Welcome Shivani Pandey</div>
         <div className="home">
-        
-
-
-
    <div className="gallery">
   {photos.map((img, index) => (
     <Card key={index} style={{ width: "18rem" }}>
       <Card.Img variant="top" src={img} />
     </Card>
   ))}
-</div>
-</div>
+</div></div>
 
 {/*}------------------------------------------------
         {/*}Module From
 -------------------------------------------------------  {*/}     
-{/*}UPLOAD PHOTO{*/}
+{/*}==========================================
+                 UPLOAD PHOTO
+=============================================={*/}
      
 <Modal
       show={modalShowfile} onHide={()=>setModalShowFile(false)}
@@ -189,17 +183,17 @@ useEffect(() => {
       </Form.Group>
       </Modal.Body>
       <Modal.Footer>
-         <button onClick={Upload_Photo} disabled={loading}>
+        <Button className='upload-btn' onClick={()=>setModalShowFile(false)}>Close</Button>
+         <button className='upload-btn' onClick={Upload_Photo} disabled={loading}>
         {loading ? "Uploading..." : "Upload"}</button>
-        <Button onClick={()=>setModalShowFile(false)}>Close</Button>
       </Modal.Footer>
     </Modal>
 
 
+{/*}=================================
+              UPDATE PASSWORD
+===================================={*/}
 
-{/*}UPDATE PASSWORD{*/}
-
-    
     <Modal
       show={modalShowpassword} onHide={()=>setModalShowPassword(false)}
       size="lg"
@@ -225,14 +219,9 @@ useEffect(() => {
      </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={()=>setModalShowPassword(false)}>Close</Button>
+        <Button className='upload-btn' onClick={()=>setModalShowPassword(false)}>Close</Button>
       </Modal.Footer>
     </Modal>
-
-
-  
-  
-
         </>
     )
 }
