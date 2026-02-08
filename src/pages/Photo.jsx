@@ -3,21 +3,18 @@ import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 export default function Photo(){
      const navigate=useNavigate();
-  const [upload, setUpload] = useState(false);
-   const[update,setUpdate]=useState(false);
-
+const [file, setFile] = useState(null);
+const [photos, setPhotos] = useState([]);
+const [refresh, setRefresh] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [modalShowpassword, setModalShowPassword] =useState(false);
   const [modalShowfile, setModalShowFile] =useState(false);
-
-
-
-
-
   const [adminpassword,setAdminpassword]=useState('');
     const [personalpassword,setPersonalpassword]=useState('');
     const handleadminpassword=(e)=>{setAdminpassword(e.target.value);}
@@ -29,14 +26,7 @@ export default function Photo(){
         if(res.data.success) {
             alert("Password Update Successfully....!✅");
                   setModalShowPassword(false);
-
-          }else{
-            {alert(res.data.error || "Password Update failed");}
-
-          }
-      })
-
-    }
+          }else{{alert(res.data.error || "Password Update failed");}}})}
 
 
     const personal_change=()=>{
@@ -45,14 +35,37 @@ export default function Photo(){
       .then(res=>{
         if(res.data.success) {
             alert("Login Successfully....!✅");
-             setModalShowPassword(false);
-          }else{
-            {alert(res.data.error || "Login failed");}
+             setModalShowPassword(false);}
+             else{{alert(res.data.error || "Login failed");}}})}
+ 
 
-          }
-      })
+const Upload_Photo = () => {
+  if (!file) {alert("Choose file first");return;}
+  const formData = new FormData();
+  formData.append("file", file);
 
-    }
+  axios.post("https://wzajrdnvabjiwbsvacsj.functions.supabase.co/auth-api/upload/image",formData,{
+        headers: {"x-login": localStorage.getItem("isLogin"),},})
+    .then((res) => {
+      if (res.data.success) {
+        alert("Photo Upload Successful ✅");
+        setModalShowFile(false);
+        setRefresh((prev) => !prev);
+      } else {
+        alert(res.data.error || "Upload failed");}})
+    .catch(() => {alert("Server error");});};
+
+useEffect(() => {
+  axios
+    .get("https://wzajrdnvabjiwbsvacsj.functions.supabase.co/auth-api/images")
+    .then((res) => {
+      if (res.data.success)
+         {setPhotos(res.data.data);}})
+    .catch(() => {
+      alert("Load failed");});},[refresh]);
+
+
+
     const handlelogout=()=>{ localStorage.clear();navigate('/');}
 
 
@@ -87,8 +100,19 @@ export default function Photo(){
     </Navbar>
         <div className="header">Welcome Shivani Pandey</div>
         <div className="home">
-        <h1>Photo .......!</h1>
         
+
+
+
+   <div className="gallery">
+  {photos.map((img, index) => (
+    <Card key={index} style={{ width: "18rem" }}>
+      <Card.Img variant="top" src={img} />
+    </Card>
+  ))}
+</div>
+
+
 
 
 
@@ -126,10 +150,12 @@ export default function Photo(){
       <Modal.Body>
         <Form.Group controlId="formFileMultiple" className="mb-3">
         <Form.Label className='admin-passwordlbl'>Select Photo :-</Form.Label>
-        <Form.Control type="file" multiple />
+        <Form.Control type="file"  onChange={(e) => setFile(e.target.files[0])} multiple />
       </Form.Group>
       </Modal.Body>
       <Modal.Footer>
+         <button onClick={Upload_Photo} disabled={loading}>
+        {loading ? "Uploading..." : "Upload"}</button>
         <Button onClick={()=>setModalShowFile(false)}>Close</Button>
       </Modal.Footer>
     </Modal>
