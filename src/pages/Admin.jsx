@@ -18,13 +18,12 @@ const navigate=useNavigate();
                 if (res.data.success) {
             alert("Login Successfully....!✅");
            localStorage.setItem("isLogin", "true");
+            const expiry = Date.now() + 10 * 60 * 1000;
+            localStorage.setItem("expiry", expiry);
       setIsLoggedIn(true);
       navigate("/personal");
-     }else{alert(res.data.error || "Login failed");}
-})
-
-
- }
+     }else{alert(res.data.error || "Login failed");
+              navigate("/");}})}
 
  
 

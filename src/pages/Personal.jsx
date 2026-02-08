@@ -23,9 +23,12 @@ const Personal_Login=()=>{
             if (res.data.success) {
             alert("Welcome Shivani....!✅");
            localStorage.setItem("isLogin", "true");
+           const expiry = Date.now() + 10 * 60 * 1000;
+            localStorage.setItem("expiry", expiry);
              setIsLoggedIn(true);
              navigate("/photos");
-                }else{alert(res.data.error || "Login failed");}})}
+                }else{alert(res.data.error || "Login failed");
+                  navigate("/");}})}
 return(
         <>
                 <Navbr/>

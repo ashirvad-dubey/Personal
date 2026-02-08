@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 export default function Photo(){
      const navigate=useNavigate();
-const [file, setFile] = useState(null);
+const [files, setFiles] = useState([]);
 const [photos, setPhotos] = useState([]);
 const [refresh, setRefresh] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -39,6 +39,40 @@ const [refresh, setRefresh] = useState(false);
              else{{alert(res.data.error || "Login failed");}}})}
  
 
+const Upload_Photo = async () => {
+  if (files.length === 0) {
+    alert("Choose file first");
+    return;
+  }
+
+  try {
+    setLoading(true);
+    for (const file of files) {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      await axios.post(
+        "https://wzajrdnvabjiwbsvacsj.functions.supabase.co/auth-api/upload/image",
+        formData,
+        {
+          headers: {
+            "x-login": localStorage.getItem("isLogin"),
+          },
+        }
+      );
+    }
+
+    alert("All Photos Uploaded ✅");
+    setModalShowFile(false);
+
+    setRefresh((p) => !p); // gallery reload
+  } catch {
+    alert("Upload failed");
+  }finally {
+    setLoading(false);}
+};
+
+{/*}
 const Upload_Photo = () => {
   if (!file) {alert("Choose file first");return;}
   const formData = new FormData();
@@ -54,7 +88,7 @@ const Upload_Photo = () => {
       } else {
         alert(res.data.error || "Upload failed");}})
     .catch(() => {alert("Server error");});};
-
+{*/}
 useEffect(() => {
   axios
     .get("https://wzajrdnvabjiwbsvacsj.functions.supabase.co/auth-api/images")
@@ -64,7 +98,26 @@ useEffect(() => {
     .catch(() => {
       alert("Load failed");});},[refresh]);
 
+useEffect(() => {
+  const expiry = localStorage.getItem("expiry");
+  if (!expiry) return;
 
+  const timeLeft = expiry - Date.now();
+
+  if (timeLeft <= 0) {
+    localStorage.clear();
+    alert("Session expired. Login again.");
+    navigate("/");
+  } else {
+    const timer = setTimeout(() => {
+      localStorage.clear();
+      alert("Session expired. Login again.");
+      navigate("/");
+    }, timeLeft);
+
+    return () => clearTimeout(timer);
+  }
+}, []);
 
     const handlelogout=()=>{ localStorage.clear();navigate('/');}
 
@@ -111,24 +164,6 @@ useEffect(() => {
     </Card>
   ))}
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
 
 {/*}------------------------------------------------
@@ -144,13 +179,13 @@ useEffect(() => {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
+          Photo Upload
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form.Group controlId="formFileMultiple" className="mb-3">
         <Form.Label className='admin-passwordlbl'>Select Photo :-</Form.Label>
-        <Form.Control type="file"  onChange={(e) => setFile(e.target.files[0])} multiple />
+        <Form.Control type="file"  onChange={(e) => setFiles([...e.target.files])} multiple />
       </Form.Group>
       </Modal.Body>
       <Modal.Footer>
