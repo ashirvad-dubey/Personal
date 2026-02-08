@@ -21,7 +21,7 @@ const Personal_Login=()=>{
            axios.post("https://wzajrdnvabjiwbsvacsj.functions.supabase.co/auth-api/personal/login",dt)
            .then(res=>{
             if (res.data.success) {
-            alert("Login Shivani....!✅");
+            alert("Welcome Shivani....!✅");
            localStorage.setItem("isLogin", "true");
              setIsLoggedIn(true);
              navigate("/photos");
@@ -29,7 +29,7 @@ const Personal_Login=()=>{
 return(
         <>
                 <Navbr/>
-               <div className="header">WELCOME LOGIN PERSONAL PAGE</div>
+               <div className="header">LOGIN PERSONAL PAGE</div>
 
  <div className="inner-box">
             <div className="login-pass">

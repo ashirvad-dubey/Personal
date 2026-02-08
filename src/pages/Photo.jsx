@@ -10,20 +10,42 @@ export default function Photo(){
      const navigate=useNavigate();
   const [upload, setUpload] = useState(false);
    const[update,setUpdate]=useState(false);
-  const handleClose = () => setUpload(false);
-  const handleShow = () => setUpload(true);
-  const handleupClose = () => setUpdate(false);
-  const handleupShow = () => setUpdate(true);
+
+  const [modalShowpassword, setModalShowPassword] =useState(false);
+  const [modalShowfile, setModalShowFile] =useState(false);
+
+
+
+
+
   const [adminpassword,setAdminpassword]=useState('');
     const [personalpassword,setPersonalpassword]=useState('');
     const handleadminpassword=(e)=>{setAdminpassword(e.target.value);}
     const personaladminpassword=(e)=>{setPersonalpassword(e.target.value);}
     const admin_change=()=>{
-      const dt={newPassword:password}
+      const dt={newPassword:adminpassword}
       axios.put("https://wzajrdnvabjiwbsvacsj.functions.supabase.co/auth-api/admin/update-password",dt)
       .then(res=>{
         if(res.data.success) {
+            alert("Password Update Successfully....!✅");
+                  setModalShowPassword(false);
+
+          }else{
+            {alert(res.data.error || "Password Update failed");}
+
+          }
+      })
+
+    }
+
+
+    const personal_change=()=>{
+      const dt={newPassword:personalpassword}
+      axios.put("https://wzajrdnvabjiwbsvacsj.functions.supabase.co/auth-api/personal/update-password",dt)
+      .then(res=>{
+        if(res.data.success) {
             alert("Login Successfully....!✅");
+             setModalShowPassword(false);
           }else{
             {alert(res.data.error || "Login failed");}
 
@@ -49,14 +71,14 @@ export default function Photo(){
 
         {/* CENTER */}
         <div className="mx-auto">
-          <Button variant="success" onClick={handleShow} >
+          <Button variant="success" onClick={() => setModalShowFile(true)} >
             Upload Photo
           </Button>
         </div>
 
         {/* RIGHT */}
         <div className="ms-auto">
-          <Button variant="warning" onClick={handleupShow} >
+          <Button variant="warning"  onClick={() => setModalShowPassword(true)} >
             Password
           </Button>
         </div>
@@ -89,36 +111,47 @@ export default function Photo(){
         {/*}Module From
 -------------------------------------------------------  {*/}     
 {/*}UPLOAD PHOTO{*/}
-      <Modal show={upload} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Upload Photo</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-
-<Form.Group controlId="formFileMultiple" className="mb-3">
-        <Form.Label>Multiple files input example</Form.Label>
+     
+<Modal
+      show={modalShowfile} onHide={()=>setModalShowFile(false)}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Modal heading
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form.Group controlId="formFileMultiple" className="mb-3">
+        <Form.Label className='admin-passwordlbl'>Select Photo :-</Form.Label>
         <Form.Control type="file" multiple />
       </Form.Group>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Upload Photo
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={()=>setModalShowFile(false)}>Close</Button>
+      </Modal.Footer>
+    </Modal>
+
+
+
 {/*}UPDATE PASSWORD{*/}
 
-
- <Modal show={update} onHide={handleupClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Password Update</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-           <div className="admin-box">
+    
+    <Modal
+      show={modalShowpassword} onHide={()=>setModalShowPassword(false)}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+              Password Update
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+          <div className="admin-box">
       <Form.Label htmlFor="inputPassword5" className='admin-passwordlbl'>Admin Password :-</Form.Label>
       <Form.Control type="password"id="inputPassword5" className='admin-passwordfrom' onChange={handleadminpassword} aria-describedby="passwordHelpBlock"/>
        <Button variant="primary" className='admin-btn' onClick={admin_change}>Admin Password Update</Button>
@@ -126,20 +159,18 @@ export default function Photo(){
        <div className="admin-box">
        <Form.Label htmlFor="inputPassword5" className='admin-passwordlbl'>Personal Password:- </Form.Label>
       <Form.Control type="password"id="inputPassword5" className='admin-passwordfrom' onChange={personaladminpassword} aria-describedby="passwordHelpBlock"/>
-            <Button variant="info" className='admin-btn' onClick={admin_change}>Personal Password Update</Button>
+            <Button variant="info" className='admin-btn' onClick={personal_change}>Personal Password Update</Button>
 
      </div>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={()=>setModalShowPassword(false)}>Close</Button>
+      </Modal.Footer>
+    </Modal>
 
-       
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleupClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    
 
+  
+  
 
         </>
     )
