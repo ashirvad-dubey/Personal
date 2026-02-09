@@ -13,6 +13,7 @@ const [files, setFiles] = useState([]);
 const [photos, setPhotos] = useState([]);
 const [refresh, setRefresh] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [preview, setPreview] = useState(null);
   const [modalShowpassword, setModalShowPassword] =useState(false);
   const [modalShowfile, setModalShowFile] =useState(false);
   const [adminpassword,setAdminpassword]=useState('');
@@ -52,7 +53,7 @@ const Upload_Photo = async () => {
       formData.append("file", file);
 
       await axios.post(
-        "https://wzajrdnvabjiwbsvacsj.functions.supabase.co/auth-api/upload/image",
+        "https://wzajrdnvabjiwbsvacsj.functions.supabase.co/auth-api/upload",
         formData,
         {
           headers: {
@@ -150,13 +151,44 @@ useEffect(() => {
     </Navbar>
         <div className="header">Welcome Shivani Pandey</div>
         <div className="home">
-   <div className="gallery">
-  {photos.map((img, index) => (
-    <Card key={index} style={{ width: "18rem" }}>
-      <Card.Img variant="top" src={img} />
+
+ {/*}  <div className="gallery" >
+  {photos.map((item) => (
+    <Card key={item.id} style={{ width: "18rem" }}>
+      {item.type === "image" ? (
+        <Card.Img variant="top" src={item.url} />
+      ) : (
+        <video src={item.url} controls width="100%" />
+      )}
     </Card>
   ))}
-</div></div>
+</div>{*/}
+<div className="gallery">
+  {photos.map((item) => (
+    <Card
+      key={item.id}
+      style={{ width: "18rem", cursor: "pointer" }}
+      onClick={() => setPreview(item)}   // 🔥 yahi magic
+    >
+      {item.type === "image" ? (
+        <Card.Img
+          variant="top"
+          src={item.url}
+          style={{ height: "200px", objectFit: "cover" }}
+        />
+      ) : (
+        <video
+          src={item.url}
+          style={{ height: "200px", width: "100%", objectFit: "cover" }}
+        />
+      )}
+    </Card>
+  ))}
+</div>
+
+
+
+</div>
 
 {/*}------------------------------------------------
         {/*}Module From
@@ -222,6 +254,43 @@ useEffect(() => {
         <Button className='upload-btn' onClick={()=>setModalShowPassword(false)}>Close</Button>
       </Modal.Footer>
     </Modal>
-        </>
+
+
+
+  {/*}======================================
+                  Photo Show
+  =========================================={*/}  
+
+ <Modal
+  show={!!preview}
+  onHide={() => setPreview(null)}
+  centered
+  size="xl"
+>
+  <Modal.Body style={{ padding: 0, textAlign: "center", background: "#000" }}>
+    {preview?.type === "image" ? (
+      <img
+        src={preview?.url}
+        alt="preview"
+        style={{
+          width: "100%",
+          height: "80vh",
+          objectFit: "contain",
+        }}
+      />
+    ) : (
+      <video
+        src={preview?.url}
+        controls
+        autoPlay
+        style={{
+          width: "100%",
+          height: "80vh",
+          objectFit: "contain",
+        }}
+      />
+    )}
+  </Modal.Body>
+</Modal>       </>
     )
 }
