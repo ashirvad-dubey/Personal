@@ -17,11 +17,9 @@ export default function App() {
     <Router>
 
          <Routes>
-        {/* Public */}
         <Route path="/" element={<Home />} />
         <Route path="/admin" element={<Admin />} />
 
-        {/* Protected */ }
 
  
 
@@ -47,4 +45,3 @@ export default function App() {
     </>
   );
 }
-

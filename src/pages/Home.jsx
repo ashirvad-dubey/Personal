@@ -21,7 +21,7 @@ export default function Home() {
       <div className="home">
         <Navbar expand="lg" className="bg-body-tertiary" style={{}}>
           <Container fluid style={{display:"flex",justifyContent:"center",alignItems:'center',fontWeight:"bold",fontFamily:"math"}}>
-            <Navbar.Brand id="dashboard"onClick={() => navigate("/admin")}>
+            <Navbar.Brand id="dashboard"  onClick={() => navigate("/admin")}>
               DASHBOARD</Navbar.Brand></Container></Navbar>
         <div className="gallery">{cards}</div></div>
     </>

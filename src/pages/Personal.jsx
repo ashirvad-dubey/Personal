@@ -2,10 +2,12 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
+
 import axios from 'axios';
 
 import './Home.css';
-import Navbr from './Navbr';
 import { useState } from 'react';
 
 
@@ -29,12 +31,23 @@ const Personal_Login=()=>{
              navigate("/photos");
                 }else{alert(res.data.error || "Login failed");
                   navigate("/");}})}
+
+           const handlelogout=()=>{ localStorage.clear();navigate('/');}           
 return(
         <>
-                <Navbr/>
-               <div className="header"><div className="inner-admin">LOGIN PERSONAL PAGE</div></div>
+        <Navbar className="header">
+  <Container fluid className="position-relative">
 
- <div className="inner-box">
+    <div className="position-absolute start-0">
+      <Button variant="warning" className='logout' onClick={handlelogout}>Logout</Button>
+    </div>
+    <div className="mx-auto text-white fw-bold">
+LOGIN PERSONAL PAGE</div>
+
+  </Container>
+</Navbar>
+
+ <div className="personal-inner-box">
             <div className="login-pass">
          <Card>
       <Card.Body>
@@ -44,7 +57,7 @@ return(
     <Form>
     <Form.Control type="password" onChange={handlepassword}  placeholder="Password" />
     </Form></Card.Text>
-        <Button className='login' onClick={Personal_Login} variant="primary">Login</Button>
+        <Button className='login-per' onClick={Personal_Login} variant="primary">Login</Button>
       </Card.Body>
     </Card>
           </div></div>        

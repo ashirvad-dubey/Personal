@@ -89,7 +89,8 @@ const Upload_Photo = () => {
       } else {
         alert(res.data.error || "Upload failed");}})
     .catch(() => {alert("Server error");});};
-{*/}
+    {*/}
+
 useEffect(() => {
   axios
     .get("https://wzajrdnvabjiwbsvacsj.functions.supabase.co/auth-api/images")
@@ -127,21 +128,20 @@ useEffect(() => {
            <Navbar variant="dark">
       <Container fluid className="d-flex align-items-center">
 
-        {/* LEFT */}
         <div className="me-auto">
           <Button className='photo-btn' variant="warning"  onClick={handlelogout}>
             Logout
           </Button>
         </div>
 
-        {/* CENTER */}
+        
         <div className="mx-auto">
-          <Button  className='upload-btn' variant="success" onClick={() => setModalShowFile(true)} >
+          <Button  className='upload-btnn' variant="success" onClick={() => setModalShowFile(true)} >
             Upload Photo/Video
           </Button>
         </div>
 
-        {/* RIGHT */}
+        
         <div className="ms-auto">
           <Button className='photo-btn' variant="warning"  onClick={() => setModalShowPassword(true)} >
             Password
@@ -149,8 +149,8 @@ useEffect(() => {
         </div>
       </Container>
     </Navbar>
-        <div className="header"><div className="inner-admin">Welcome Shivani Pandey</div></div>
-        <div className="home">
+        <div className="header">Welcome Shivani Pandey</div>
+        <div className="photo-inner-box">
 
  
 <div className="gallery">
@@ -182,7 +182,7 @@ useEffect(() => {
 
 {/*}------------------------------------------------
         {/*}Module From
--------------------------------------------------------  {*/}     
+-------------------------------------------------------     
 {/*}==========================================
                  UPLOAD PHOTO
 =============================================={*/}
@@ -249,7 +249,7 @@ useEffect(() => {
 
   {/*}======================================
                   Photo Show
-  =========================================={*/}  
+  =========================================={*/}
 
  <Modal
   show={!!preview}

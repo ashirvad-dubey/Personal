@@ -4,7 +4,8 @@ import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import './Home.css';
 import { useState } from 'react';
-import Navbr from './Navbr';
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
 import axios from 'axios';
 export default function Admin(){
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -26,16 +27,30 @@ const navigate=useNavigate();
               navigate("/");}})}
 
  
+    const handlelogout=()=>{ localStorage.clear();navigate('/');}
 
 
 
     return(
 
         <>
-        <Navbr/>
-       <div className="header">
-        <div className="inner-admin">ADMIN LOGIN PAGE</div>
-        </div>
+
+           <Navbar className="header">
+  <Container fluid className="position-relative">
+
+    <div className="position-absolute start-0">
+      <Button variant="warning" className='logout' onClick={handlelogout}>Back</Button>
+    </div>
+    <div className="mx-auto text-white fw-bold">
+    ADMIN LOGIN PAGE
+    </div>
+
+  </Container>
+</Navbar>
+                
+
+
+        
 
         <div className="inner-box">
           
