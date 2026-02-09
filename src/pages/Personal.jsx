@@ -32,7 +32,7 @@ const Personal_Login=()=>{
 return(
         <>
                 <Navbr/>
-               <div className="header">LOGIN PERSONAL PAGE</div>
+               <div className="header"><div className="inner-admin">LOGIN PERSONAL PAGE</div></div>
 
  <div className="inner-box">
             <div className="login-pass">

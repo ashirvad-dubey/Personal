@@ -33,7 +33,9 @@ const navigate=useNavigate();
 
         <>
         <Navbr/>
-       <div className="header">ADMIN LOGIN PAGE</div>
+       <div className="header">
+        <div className="inner-admin">ADMIN LOGIN PAGE</div>
+        </div>
 
         <div className="inner-box">
           

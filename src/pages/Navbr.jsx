@@ -12,7 +12,7 @@ export default function Navbr(){
 
     return(
         <>
-        <Navbar expand="lg" className="bg-body-tertiary"><Container fluid><Navbar.Brand ><Button onClick={handlelogout} className='logout' variant="warning">Logout</Button>
+        <Navbar expand="lg" className="bg-body-tertiary"><Container fluid><Navbar.Brand ><Button onClick={handlelogout} className='logout' variant="warning">Back</Button>
 
               
 </Navbar.Brand></Container></Navbar>

@@ -19,22 +19,11 @@ export default function Home() {
   return (
     <>
       <div className="home">
-        <Navbar expand="lg" className="bg-body-tertiary">
-          <Container fluid>
-            <Navbar.Brand
-              style={{ cursor: "pointer" }}
-              onClick={() => navigate("/admin")}
-            >
-              Dashboard
-            </Navbar.Brand>
-          </Container>
-        </Navbar>
-
-        {/* Gallery */}
-        <div className="gallery">
-          {cards}
-        </div>
-      </div>
+        <Navbar expand="lg" className="bg-body-tertiary" style={{}}>
+          <Container fluid style={{display:"flex",justifyContent:"center",alignItems:'center',fontWeight:"bold",fontFamily:"math"}}>
+            <Navbar.Brand id="dashboard"onClick={() => navigate("/admin")}>
+              DASHBOARD</Navbar.Brand></Container></Navbar>
+        <div className="gallery">{cards}</div></div>
     </>
   );
 }

@@ -129,40 +129,30 @@ useEffect(() => {
 
         {/* LEFT */}
         <div className="me-auto">
-          <Button variant="warning"  onClick={handlelogout}>
+          <Button className='photo-btn' variant="warning"  onClick={handlelogout}>
             Logout
           </Button>
         </div>
 
         {/* CENTER */}
         <div className="mx-auto">
-          <Button  variant="success" onClick={() => setModalShowFile(true)} >
-            Upload Photo
+          <Button  className='upload-btn' variant="success" onClick={() => setModalShowFile(true)} >
+            Upload Photo/Video
           </Button>
         </div>
 
         {/* RIGHT */}
         <div className="ms-auto">
-          <Button variant="warning"  onClick={() => setModalShowPassword(true)} >
+          <Button className='photo-btn' variant="warning"  onClick={() => setModalShowPassword(true)} >
             Password
           </Button>
         </div>
       </Container>
     </Navbar>
-        <div className="header">Welcome Shivani Pandey</div>
+        <div className="header"><div className="inner-admin">Welcome Shivani Pandey</div></div>
         <div className="home">
 
- {/*}  <div className="gallery" >
-  {photos.map((item) => (
-    <Card key={item.id} style={{ width: "18rem" }}>
-      {item.type === "image" ? (
-        <Card.Img variant="top" src={item.url} />
-      ) : (
-        <video src={item.url} controls width="100%" />
-      )}
-    </Card>
-  ))}
-</div>{*/}
+ 
 <div className="gallery">
   {photos.map((item) => (
     <Card
@@ -205,12 +195,12 @@ useEffect(() => {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Photo Upload
+          Upload Photo/Video
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form.Group controlId="formFileMultiple" className="mb-3">
-        <Form.Label className='admin-passwordlbl'>Select Photo :-</Form.Label>
+        <Form.Label className='admin-passwordlbl'>Select Photo/Video :-</Form.Label>
         <Form.Control type="file"  onChange={(e) => setFiles([...e.target.files])} multiple />
       </Form.Group>
       </Modal.Body>
