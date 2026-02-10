@@ -137,7 +137,7 @@ useEffect(() => {
         
         <div className="mx-auto">
           <Button  className='upload-btnn' variant="success" onClick={() => setModalShowFile(true)} >
-            Upload Photo/Video
+            Upload
           </Button>
         </div>
 
