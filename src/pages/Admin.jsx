@@ -2,11 +2,11 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
-import './Home.css';
 import { useState } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import axios from 'axios';
+import './Home.css';
 export default function Admin(){
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 const navigate=useNavigate();
