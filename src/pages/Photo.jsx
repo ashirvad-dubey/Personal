@@ -149,7 +149,7 @@ useEffect(() => {
         </div>
       </Container>
     </Navbar>
-        <div className="header">Welcome Shivani Pandey</div>
+        <div className="header">Welcome Shivani Dubey</div>
         <div className="photo-inner-box">
 
  
