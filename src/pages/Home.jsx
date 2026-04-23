@@ -9,7 +9,7 @@ export default function Home() {
     const [modalShow, setModalShow] =useState(false);
 
 
-  const totalPhotos = 30;
+  const totalPhotos = 110;
   const cards = [];
 
   for (let i = 1; i <= totalPhotos; i++) {
